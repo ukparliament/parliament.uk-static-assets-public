@@ -1,0 +1,26 @@
+pipelines:
+  static-assets-public:
+    group: Static Assets
+    label_template: "${COUNT}"
+    environment_variables:
+      S3_BUCKET: s3://$(AWS_ACCOUNT).static-assets-public
+    materials:
+      static-assets-public.git:
+        git: https://github.com/ukparliament/parliament.uk-static-assets-public.git
+        branch: master
+        auto_update: true
+    stages:
+      - build:
+          jobs:
+            build:
+              tasks:
+                - exec:
+                    run_if: passed
+                    command: make
+                    arguments:
+                      - deploy
+
+environments:
+  Web.LIVE:
+    pipelines:
+      - static-assets-public

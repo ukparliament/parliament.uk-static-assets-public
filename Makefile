@@ -15,3 +15,4 @@ REPO=parliament.uk-static-assets-public
 deploy:
 	aws s3 rm s3://$(AWS_ACCOUNT).static-assets-public/* --recursive
 	aws s3 sync --acl=public-read ./static-assets/ s3://$(AWS_ACCOUNT).static-assets-public
+
