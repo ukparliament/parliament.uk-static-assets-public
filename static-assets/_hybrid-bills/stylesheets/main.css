@@ -1,1 +1,5 @@
-/* Hybrid Bills CSS Overrides - Intended To Be Blank */
+/* Hybrid Bills CSS Overrides */
+
+input[type="submit"] {
+  width: auto;
+}
