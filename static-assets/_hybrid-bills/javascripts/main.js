@@ -106,11 +106,11 @@ UK_Parliament.hybridBillsForms = function () {
 
     message.style.display = 'block';
 
-    radioYes[0].addEventListener('click', function () {
+    radioYes.addEventListener('click', function () {
       message.style.display = 'none';
     });
 
-    radioNo[0].addEventListener('click', function () {
+    radioNo.addEventListener('click', function () {
       message.style.display = 'block';
     });
 
