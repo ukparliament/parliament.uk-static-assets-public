@@ -100,8 +100,8 @@ UK_Parliament.hybridBillsForms = function () {
 
     // Local variables
     var
-      radioYes = document.getElementsByClassName('js-petition-check-yes'),
-      radioNo = document.getElementsByClassName('js-petition-check-no'),
+      radioYes = document.getElementById('petition-check_yes'),
+      radioNo = document.getElementById('petition-check_no'),
       message = document.getElementById('petitionCheckStatus');
 
     message.style.display = 'block';
@@ -138,7 +138,7 @@ UK_Parliament.hybridBillsForms = function () {
       if (elements.querySelector('[data-submit="disabled"]')) {
 
         // Grab form submit button and button classes
-        var userButton = elements.querySelector('button[type="submit"]');
+        var userButton = elements.querySelector('input[type="submit"]');
         var userButtonClass = userButton.className;
 
         // Disable form submit button
