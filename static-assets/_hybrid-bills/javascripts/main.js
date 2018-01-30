@@ -125,12 +125,14 @@ UK_Parliament.hybridBillsForms = function () {
     var styleEnable = function (userButton, userButtonClass) {
       userButton.disabled = false;
       userButton.className = userButtonClass;
+      userButton.setAttribute('aria-live', 'assertive');
     };
 
     // Disabled button attribute and styling
     var styleDisable = function (userButton) {
       userButton.disabled = true;
       userButton.className = 'btn--disabled';
+      if (userButton.hasAttribute('aria-live')) userButton.removeAttribute('aria-live');
     };
 
     forms.forEach(function (elements, index) {
