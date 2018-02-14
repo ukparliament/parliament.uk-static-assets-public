@@ -1,3 +1,14 @@
+// Polyfill to enable 'forEach' in non ES6 supported browsers
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+
 // Specific functions for Hybrid Bills user forms
 
 UK_Parliament.hybridBillsForms = function () {
@@ -170,15 +181,17 @@ UK_Parliament.hybridBillsForms = function () {
             var inputCheckNamesArray = document.getElementsByName(inputCheckName);
 
             // Loop radio group and grab clicked radio button
-            inputCheckNamesArray.forEach(function (radios, index) {
-              radios.addEventListener('click', function () {
-                if (this.dataset.submit == 'disabled' && this.checked) {
-                  styleDisable(userButton);
-                } else {
-                  styleEnable(userButton, userButtonClass);
-                }
-              });
-            });
+            var styleSetRadio = function () {
+              if (this.dataset.submit == 'disabled' && this.checked) {
+                styleDisable(userButton);
+              } else {
+                styleEnable(userButton, userButtonClass);
+              }
+            };
+
+            for (var x = 0; x < inputCheckNamesArray.length; x++) {
+              inputCheckNamesArray[x].addEventListener('click', styleSetRadio, false);
+            }
           }
         });
       }
