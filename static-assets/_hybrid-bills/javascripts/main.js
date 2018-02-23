@@ -13,36 +13,15 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 UK_Parliament.hybridBillsForms = function () {
 
-  // Hide js detection message if javascript enabled
+  // Script tag aria attritube function
   if (document.querySelector('body.has-js')) {
-    if (document.querySelector('[data-browser="javascript"]')) {
+    if (document.getElementsByTagName('noscript')) {
 
-      var jsMessage = document.querySelectorAll('[data-browser="javascript"]');
+      var scriptTags = (document.getElementsByTagName('noscript'));
 
-      jsMessage.forEach(function (message, index) {
-        message.style.display = 'none';
-      });
-    }
-  }
-
-  // Hide and show cookies detection message and disable button if present
-  if (navigator.cookieEnabled === true) {
-    if (document.querySelector('[data-browser="cookies"]')) {
-
-      var ckeMessage = document.querySelectorAll('[data-browser="cookies"]');
-
-      ckeMessage.forEach(function (message, index) {
-        message.style.display = 'none';
-      });
-    }
-  } else {
-    if (document.querySelector('[data-browser="button"]')) {
-
-      var ckeButtons = document.querySelectorAll('[data-browser="button"]');
-
-      ckeButtons.forEach(function (button, index) {
-        button.style.display = 'none';
-      });
+      for (var i = 0; i < scriptTags.length; i++) {
+        scriptTags[i].setAttribute('aria-hidden', 'true');
+      }
     }
   }
 
