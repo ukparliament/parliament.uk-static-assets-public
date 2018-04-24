@@ -1,10 +1,7 @@
 .PHONY: deploy
 
 # When run in gocd it will be injected by environment variable
-AWS_ACCOUNT?=unknown
-
-# Common variables
-STATIC_ASSETS_FOLDER=static-assets
+S3_BUCKET?=unknown
 
 # Github variables
 GITHUB_API=https://api.github.com
@@ -13,6 +10,5 @@ REPO=parliament.uk-static-assets-public
 
 # Deploys to S3 without a version
 deploy:
-	aws s3 rm s3://$(AWS_ACCOUNT).static-assets-public/* --recursive
-	aws s3 sync --acl=public-read ./static-assets/ s3://$(AWS_ACCOUNT).static-assets-public
-
+	aws s3 rm $(S3_BUCKET)/* --recursive
+	aws s3 sync --acl=public-read ./static-assets/ $(S3_BUCKET)
