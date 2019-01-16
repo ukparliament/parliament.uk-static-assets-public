@@ -21,6 +21,6 @@ pipelines:
                       - deploy
 
 environments:
-  Web.LIVE:
+  WebLIVE:
     pipelines:
       - static-assets-public
