@@ -13,6 +13,6 @@ REPO=parliament.uk-static-assets-public
 
 # Deploys to S3 without a version
 deploy:
-	aws s3 rm s3://$(AWS_ACCOUNT).static-assets-public/* --recursive
-	aws s3 sync --acl=public-read ./static-assets/ s3://$(AWS_ACCOUNT).static-assets-public
+	aws s3 rm $(S3_BUCKET)/assets-public/* --recursive
+	aws s3 sync --acl=public-read ./static-assets/ $(S3_BUCKET)/assets-public
 
